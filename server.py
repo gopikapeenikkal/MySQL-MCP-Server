@@ -32,15 +32,14 @@ def get_db_connection():
     conn = None 
     try:
         logging.info("Attempting to connect to the database...")
-        # Add the actual connection attempt
+        # Attempt to establish a connection
         conn = mysql.connector.connect(**DB_CONFIG)
         if conn.is_connected():
              logging.info("Database connection established successfully.")
              return conn
         else:
-            # This case is unlikely if connect() succeeds but good to handle
             logging.error("mysql.connector.connect did not raise an error but connection is not active.")
-            return None # Fix the indentation here
+            return None 
     except mysql.connector.Error as err:
         logging.error(f"MySQL connection error: {err}", exc_info=True)
         return None
@@ -48,7 +47,7 @@ def get_db_connection():
         # Catch any other unexpected errors during connection
         logging.error(f"Unexpected error during database connection: {e}", exc_info=True)
         return None
-
+#tools in server
 @mcp.tool()
 def read_query(query: str, params: List[str] = None) -> Dict[str, Any]:
     """Execute a SELECT query"""
@@ -90,7 +89,6 @@ def read_query(query: str, params: List[str] = None) -> Dict[str, Any]:
         if conn and conn.is_connected():
             conn.close()
             logging.info("Database connection closed.")
-        # Removed the final logging.info as it was potentially inaccurate
 
 
 if __name__ == "__main__":
