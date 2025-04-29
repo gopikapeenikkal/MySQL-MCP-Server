@@ -2,4 +2,3 @@
 .venv
 mysqlconnect.py 
 uv.lock
-.gitignore
