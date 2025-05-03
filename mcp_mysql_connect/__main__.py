@@ -1,4 +1,4 @@
-from .mcp_server_connect import mcp
+from .mcp_mysql_connect import mcp
 
 def main():
     mcp.run()
